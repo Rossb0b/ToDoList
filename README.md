@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MemberArea
 
 TP on a member area creation in PHP/MySql.
@@ -33,3 +34,6 @@ No license available.
 
 ## Acknowledgments
 
+=======
+# ToDoList
+>>>>>>> fc95c0380bd3a48c58b6e00dfe060eeca20056e5
