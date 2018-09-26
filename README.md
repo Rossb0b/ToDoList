@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-# MemberArea
+# ToDo List
 
-TP on a member area creation in PHP/MySql.
+TP on a ToDo List creation in PHP/MySql.
 
 ## Getting Started
 
@@ -33,7 +32,3 @@ No specific details on our code of conduct, and process for submitting pull requ
 No license available.
 
 ## Acknowledgments
-
-=======
-# ToDoList
->>>>>>> fc95c0380bd3a48c58b6e00dfe060eeca20056e5
