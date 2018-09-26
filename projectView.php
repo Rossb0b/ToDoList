@@ -20,17 +20,27 @@
 		<div class="list mt-4">
 			<h2> ToDo Lists : </h2>
 		<?php
-			foreach($repListsThisProject as $value)
+			foreach($repListsThisProject as $list)
 			{
 		?>
-				<a href="tasks.php?list=<?=$value['id'];?>"><?= $value['name']; ?></a>
+				<a href="tasks.php?list=<?=$list['id'];?>"><?= $list['name']; ?></a>
 				<br />
 		<?php		
 			}
 		?>
 		</div>		
-
 	</div>	
+
+	<div class="container-fluid col-6 mt-5">
+		<form method="post" action="project.php?project=<?=$_GET['project'];?>">
+			<label for="listname">Indiquez le nom de votre liste.</label>
+			<input type="text" name="listname">
+
+			<input type="hidden" name="project" value="<?= $_GET['project']; ?>">
+
+			<input type="submit" value="valider">
+		</form>
+	</div>		
 
 <?php
 	require ('footer.php');
