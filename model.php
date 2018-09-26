@@ -4,6 +4,10 @@ require ('global.php');
 
 // Function needed for index/indexView.php.
 
+
+
+// Function shows every projects. 
+
 function getAllProjects()
 {	
 	$db = connect();
@@ -13,6 +17,9 @@ function getAllProjects()
 	return $req;
 };
 
+
+// Function shows only last 5 projects for header dropdown.
+
 function getLastProjects()
 {
 	$db = connect();
@@ -21,6 +28,9 @@ function getLastProjects()
 	$rep = $req->fetchAll();
 	return $rep;
 }
+
+
+// Function to add project on DB.
 
 function addProject()
 {
@@ -35,7 +45,11 @@ function addProject()
 }
 
 
-// Function needed for project/projectView.php
+// Function needed for project/projectView.php.
+
+
+
+// Function to get THIS project via GET method.
 
 function getThisProject()
 {
@@ -48,12 +62,46 @@ function getThisProject()
 	return $rep;
 }
 
+
+// Function shows lists linked to THIS project.
+
 function getListsThisProject()
 {
 	$db = connect();
 
 	$req = $db->prepare('SELECT id, name FROM ToDoLists WHERE project_id = ?');
 	$req->execute(array($_GET['project']
+	));
+	$rep = $req->fetchAll();
+	return $rep;
+}
+
+// Functions needed for tasks/tasksView.php.
+
+
+
+// Function to get THIS list from GET method.
+
+function getThisList()
+{
+	$db = connect();
+
+	$req = $db->prepare('SELECT name FROM ToDoLists WHERE id = ?');
+	$req->execute(array($_GET['list']
+	));
+	$rep = $req->fetchAll();
+	return $rep;
+}
+
+
+// Function shows tasks linked to THIS list.
+
+function getTasksThisList()
+{
+	$db = connect();
+
+	$req = $db->prepare('SELECT * FROM Tasks WHERE list_id = ?')
+	$req->execute(array($_GET['list']
 	));
 	$rep = $req->fetchAll();
 	return $rep;
