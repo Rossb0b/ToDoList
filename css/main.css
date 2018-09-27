@@ -109,6 +109,11 @@ a, a:hover
     text-decoration:none;
 }
 
+.done 
+{
+    text-decoration:line-through;
+}
+
 
 
 

@@ -54,6 +54,16 @@ function checkAddProject()
 	return $countname;
 }
 
+// Function delete list
+
+function deleteProject()
+{
+	$db = connect();
+
+	$req = $db->prepare('DELETE FROM Projects WHERE id = "' . $_POST['delete'] . '"');
+	$rep = $req->execute();	
+}
+
 
 
 
@@ -113,6 +123,16 @@ function checkAddLists()
 	return $countname;
 }
 
+// Function delete list
+
+function deleteList()
+{
+	$db = connect();
+
+	$req = $db->prepare('DELETE FROM ToDoLists WHERE id = "' . $_POST['delete'] . '"');
+	$rep = $req->execute();	
+}
+
 
 
 
@@ -145,7 +165,7 @@ function getTasksThisList()
 {
 	$db = connect();
 
-	$req = $db->prepare('SELECT id, name, DATE_FORMAT(deadline, "%d/%m/%Y %Hh%imin%ss") as deadline_fr FROM Tasks WHERE list_id = ?');
+	$req = $db->prepare('SELECT id, name, status, DATE_FORMAT(deadline, "%d/%m/%Y %Hh%imin%ss") as deadline_fr FROM Tasks WHERE list_id = ?');
 	$req->execute(array($_GET['list']
 	));
 	$rep = $req->fetchAll();
@@ -159,11 +179,12 @@ function addTasksThisList()
 {
 	$db = connect();
 
-	$req = $db->prepare('INSERT INTO Tasks(name, deadline, list_id) VALUES(:name, :deadline, :list_id)');
+	$req = $db->prepare('INSERT INTO Tasks(name, deadline, list_id, status) VALUES(:name, :deadline, :list_id, :status)');
 	$req->execute(array(
 		'name' => $_POST['name'],
 		'deadline' => $_POST['deadline'],
-		'list_id' => $_POST['list']
+		'list_id' => $_POST['list'],
+		'status' => $_POST['status']
 	));
 }
 
@@ -178,4 +199,27 @@ function checkAddTasks()
 	$countname = $req->rowCount();
 
 	return $countname;
+}
+
+// Function update Status of THIS task.
+
+function updateStatus()
+{
+	$db = connect();
+
+	$req = $db->prepare('UPDATE Tasks SET status = :status WHERE id = :id');
+	$req->execute(array(
+		'status' => $_POST['status'],
+		'id' => $_POST['id']
+	));
+}
+
+// Function delete task
+
+function deleteTask()
+{
+	$db = connect();
+
+	$req = $db->prepare('DELETE FROM Tasks WHERE id = "' . $_POST['id'] . '"');
+	$rep = $req->execute();
 }

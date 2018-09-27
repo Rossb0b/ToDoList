@@ -13,7 +13,23 @@
 			<?php foreach ($repTasksThisList as $task)
 				{
 			?>		<div>
-						<li><?= $task['name'] . " : " . $task['deadline_fr']; ?></li>
+						<li class="<?php if($task['status'] == '1'){
+							echo 'done';
+						} ?>"><?= $task['name'] . " : " . $task['deadline_fr']; ?>
+						</li>
+							<br />
+							<form method="post" action="tasks.php?list=<?=$_GET['list'];?>">
+								<input type="hidden" name="id" value="<?= $task['id'] ?>">
+								<select name="status">
+									<option value="0">ToDo</option>
+									<option value="1">Done</option>
+								</select>
+								<input type="submit" name="switchStatus" value="Valider">
+							</form>
+							<form method="post" action="tasks.php?list=<?=$_GET['list'];?>">
+								<input type="hidden" name="id" value="<?= $task['id'] ?>">
+								<button type="submit" name="delete"><i class="fas fa-trash-alt"></i></button>
+							</form>
 					</div>
 			<?php		
 				}
@@ -23,6 +39,7 @@
 
 	<div class="container-fluid col-6">
 		<form method="post" action="tasks.php?list=<?=$_GET['list'];?>">
+			<input type="hidden" name="status" value="0">
 			<label for="name">Indiquez le nom de la tâche.</label>
 			<input type="text" name="name">
 

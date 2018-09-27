@@ -3,6 +3,39 @@
 ?>
 
 
+
+  <div class="container-fluid col-6 mx-auto text-left mt-5">
+
+    <form method="post" action="index.php">
+      <label for="name">Indiquez le nom du projet : </label>
+      <input type="text" name="name">
+     
+      <label for="description">Indiquez la description du projet :</label>
+      <input type="text" name="description">
+
+      <label for="end">Indiquez la date de fin du projet.</label>
+      <input type="date" name="deadline" id="end">
+<br />
+      <input type="submit" value="valider">
+
+    </form>  
+
+    <form method="post" action="index.php">
+      <label for="delete">Indiquez le projet à supprimer.</label>
+      <select name="delete">
+        <?php
+            foreach($repAll as $listProjects)
+            {
+        ?>
+              <option name="id" value="<?= $listProjects['id']; ?>"><?= $listProjects['name']; ?></option>
+        <?php            
+            }
+        ?>
+      </select>
+      <input type="submit" name="deleteButton" value="Supprimer">
+    </form>          
+  </div>  
+
   <div class="container-fluid d-flex justify-content-center  text-center flex-wrap">
 
     <?php 
@@ -21,25 +54,6 @@
     ?>
 
   </div>  
-
-  <div class="container-fluid col-6 mx-auto text-left mt-5">
-
-    <form method="post" action="index.php">
-      <label for="name">Indiquez le nom du projet : </label>
-      <input type="text" name="name">
-     
-      <label for="description">Indiquez la description du projet :</label>
-      <input type="text" name="description">
-
-      <label for="end">Indiquez la date de fin du projet.</label>
-      <input type="date" name="deadline" id="end">
-<br />
-      <input type="submit" value="valider">
-
-    </form>  
-
-  </div>  
-
 <?php
   require ('footer.php');
 ?>  

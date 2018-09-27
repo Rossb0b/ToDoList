@@ -21,3 +21,8 @@ if (isset($_POST['listname']))
 		echo "<p class='text-center'>Vous avez déjà une tâche portant ce nom.</p>";
 	}
 }
+
+if (isset($_POST['deleteButton']))
+{
+	$deleteList = deleteList();
+}
