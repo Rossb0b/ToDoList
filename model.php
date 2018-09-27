@@ -2,7 +2,57 @@
 
 require ('global.php');
 
-// Function needed for index/indexView.php.
+// !----------------------------------------------------------! 						
+// 				Function needed for memberArea
+// !----------------------------------------------------------!
+
+
+function identification()
+{	
+	$db = connect();
+
+	$req = $bdd->query('SELECT id, pseudo, pass FROM member');
+	
+	return $req;
+};
+
+function registration()
+{
+	$db = connect();
+
+	$req = $bdd->prepare('INSERT INTO member(pseudo, pass, email, date_inscription) VALUES(:pseudo, :pass, :email, CURDATE())');
+	$req->execute(array(
+		'pseudo' => $_POST['pseudo'],
+		'pass' => $_POST['password'],
+		'email' => $_POST['email']
+				));
+
+	return $req;
+};
+
+function checkRegistration()
+{
+	$db = connect();
+
+	$req = $bdd->query('SELECT pseudo FROM member WHERE pseudo = "'.$_POST['pseudo'].'"');
+	$countpseudo = $req->rowCount();
+
+	return $countpseudo;
+}
+
+
+
+
+
+
+
+
+
+
+
+// !----------------------------------------------------------! 			
+//			Function needed for index/indexView.php.
+// !----------------------------------------------------------!
 
 
 // Function shows every projects. 
@@ -72,7 +122,9 @@ function deleteProject()
 
 
 
-// Function needed for project/projectView.php.
+// !----------------------------------------------------------! 			
+// 			Function needed for projects/projectsView.php
+// !----------------------------------------------------------!
 
 
 // Function to get THIS project via GET method.
@@ -82,7 +134,7 @@ function getThisProject()
 	$db = connect();
 
 	$req = $db->prepare('SELECT id, name, description, DATE_FORMAT(deadline, "%d/%m/%Y %Hh%imin%ss") as deadline_fr FROM Projects WHERE id =  ?');
-	$req->execute(array($_GET['project']
+	$req->execute(array($_GET['project_id']
 	));
 	$rep = $req->fetch();
 	return $rep;
@@ -96,7 +148,7 @@ function getListsThisProject()
 	$db = connect();
 
 	$req = $db->prepare('SELECT id, name FROM ToDoLists WHERE project_id = ?');
-	$req->execute(array($_GET['project']
+	$req->execute(array($_GET['project_id']
 	));
 	$rep = $req->fetchAll();
 	return $rep;
@@ -141,8 +193,9 @@ function deleteList()
 
 
 
-
-// Functions needed for tasks/tasksView.php.
+// !----------------------------------------------------------! 			
+//			Function needed for tasks/tasksView.php.
+// !----------------------------------------------------------!
 
 
 // Function to get THIS list from GET method.

@@ -1,7 +1,7 @@
 <?php
 	$title = "Liste : " . $repThisList['name'];
 	$backLinkCheck = true;
-	$backLink = "project.php?project=" . $_GET['Project'];
+	$backLink = "index.php?action=project&amp;project_id=" . $_GET['Project'];
 	require ('header.php');
 ?>
 
