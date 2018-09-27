@@ -145,7 +145,7 @@ function getTasksThisList()
 {
 	$db = connect();
 
-	$req = $db->prepare('SELECT id, name, DATE_FORMAT(deadline, "%d/%m/%Y %Hh%imin%ss") as deadline_fr FROM Tasks WHERE list_id = ?');
+	$req = $db->prepare('SELECT id, name, status, DATE_FORMAT(deadline, "%d/%m/%Y %Hh%imin%ss") as deadline_fr FROM Tasks WHERE list_id = ?');
 	$req->execute(array($_GET['list']
 	));
 	$rep = $req->fetchAll();
@@ -178,4 +178,17 @@ function checkAddTasks()
 	$countname = $req->rowCount();
 
 	return $countname;
+}
+
+// Function update Status.
+
+function updateStatus()
+{
+	$db = connect();
+
+	$req = $db->prepare('UPDATE Tasks SET status = :status WHERE id = :id');
+	$req->execute(array(
+		'status' => $_POST['status'],
+		'id' => $_POST['id']
+	));
 }

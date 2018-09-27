@@ -23,4 +23,9 @@ if (isset($_POST['name']) and isset($_POST['deadline']))
 	}
 }
 
+if (isset($_POST['status']))
+{
+	$updateStatus = updateStatus();
+}
+
 ?>

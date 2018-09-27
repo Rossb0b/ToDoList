@@ -1,5 +1,6 @@
 <?php
 	require ('header.php');
+	$test = '0';
 ?>
 
 	<div class="main-title container-fluid mt-5 col-2 text-center mx-auto">
@@ -13,7 +14,19 @@
 			<?php foreach ($repTasksThisList as $task)
 				{
 			?>		<div>
-						<li><?= $task['name'] . " : " . $task['deadline_fr']; ?></li>
+						<li class="<?php if($task['status'] == '1'){
+							echo 'done';
+						} ?>"><?= $task['name'] . " : " . $task['deadline_fr']; ?>
+						</li>
+							<br />
+							<form method="post" action="tasks.php?list=<?=$_GET['list'];?>">
+								<input type="hidden" name="id" value="<?= $task['id'] ?>">
+								<select name="status">
+									<option value="0">ToDo</option>
+									<option value="1">Done</option>
+								</select>
+								<input type="submit" value="Valider">
+							</form>		
 					</div>
 			<?php		
 				}
