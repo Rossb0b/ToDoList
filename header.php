@@ -1,7 +1,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title></title>
+  <title><?= $title ?></title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -57,6 +57,16 @@
               ?>
             </div>
           </li>
+          <?php
+            if ($backLinkCheck = true)
+            {
+          ?>    
+              <li class="nav-item active" style="position:absolute; right:10; top:10;">
+                <a class="nav-link" href="<?= $backLink; ?>">Retour<span class="sr-only">(current)</span></a>
+              </li>
+          <?php  
+            }
+          ?>  
         </ul>
       </div>
     </nav>

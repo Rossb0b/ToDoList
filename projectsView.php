@@ -1,4 +1,5 @@
 <?php
+  $title = "Listes des projects";
   require ('header.php');
 ?>
 

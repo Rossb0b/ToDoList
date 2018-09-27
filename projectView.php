@@ -1,4 +1,7 @@
 <?php
+	$title = "Projet : " . $repThisProject['name'];
+	$backLinkCheck = true; 
+	$backLink = "index.php";
 	require ('header.php');
 ?>
 
@@ -23,7 +26,7 @@
 			foreach($repListsThisProject as $list)
 			{
 		?>
-				<a href="tasks.php?list=<?=$list['id'];?>"><?= $list['name']; ?></a>
+				<a href="tasks.php?list=<?=$list['id'];?>&amp;Project=<?= $_GET['project'];?>"><?= $list['name']; ?></a>
 				<br />
 		<?php		
 			}
