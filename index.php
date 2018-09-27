@@ -22,4 +22,9 @@ if (isset($_POST['name']) AND isset($_POST['description']) AND isset($_POST['dea
 		echo "<p class='text-center'>Vous avez déjà un projet avec ce nom.</p>";
 	}
 }
-?>
+
+
+if (isset($_POST['deleteButton']))
+{
+	$deleteProject = deleteProject();
+}

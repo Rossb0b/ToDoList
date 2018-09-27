@@ -54,6 +54,16 @@ function checkAddProject()
 	return $countname;
 }
 
+// Function delete list
+
+function deleteProject()
+{
+	$db = connect();
+
+	$req = $db->prepare('DELETE FROM Projects WHERE id = "' . $_POST['delete'] . '"');
+	$rep = $req->execute();	
+}
+
 
 
 
