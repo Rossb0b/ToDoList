@@ -40,6 +40,22 @@
 
 			<input type="submit" value="valider">
 		</form>
+
+		<form method="post" action="project.php?project=<?=$_GET['project'];?>">
+			<label for="delete">Indiquez la liste à supprimer.</label>
+			<select name="delete">
+				<?php 
+					foreach($repListsThisProject as $list)
+					{ 
+				?>		
+						<option name="id" value="<?= $list['id']; ?>"><?= $list['name']; ?></option>
+				<?php	
+					}
+				?>
+			</select>
+			<input type="submit" name="deleteButton" value="Supprimer">
+		</form>		
+
 	</div>		
 
 <?php

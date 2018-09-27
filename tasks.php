@@ -2,9 +2,9 @@
 
 require ('model.php');
 
+$repLastProjects = getLastProjects();
 $repThisList = getThisList();
 $repTasksThisList = getTasksThisList();
-
 
 
 
@@ -23,9 +23,14 @@ if (isset($_POST['name']) and isset($_POST['deadline']))
 	}
 }
 
-if (isset($_POST['status']))
+if (isset($_POST['switchStatus']))
 {
 	$updateStatus = updateStatus();
+}
+
+if (isset($_POST['delete']))
+{
+	$deleteTask = deleteTask();
 }
 
 ?>

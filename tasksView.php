@@ -1,6 +1,5 @@
 <?php
 	require ('header.php');
-	$test = '0';
 ?>
 
 	<div class="main-title container-fluid mt-5 col-2 text-center mx-auto">
@@ -25,8 +24,12 @@
 									<option value="0">ToDo</option>
 									<option value="1">Done</option>
 								</select>
-								<input type="submit" value="Valider">
-							</form>		
+								<input type="submit" name="switchStatus" value="Valider">
+							</form>
+							<form method="post" action="tasks.php?list=<?=$_GET['list'];?>">
+								<input type="hidden" name="id" value="<?= $task['id'] ?>">
+								<button type="submit" name="delete"><i class="fas fa-trash-alt"></i></button>
+							</form>
 					</div>
 			<?php		
 				}
@@ -36,6 +39,7 @@
 
 	<div class="container-fluid col-6">
 		<form method="post" action="tasks.php?list=<?=$_GET['list'];?>">
+			<input type="hidden" name="status" value="0">
 			<label for="name">Indiquez le nom de la tâche.</label>
 			<input type="text" name="name">
 

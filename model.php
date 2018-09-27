@@ -113,6 +113,16 @@ function checkAddLists()
 	return $countname;
 }
 
+// Function delete list
+
+function deleteList()
+{
+	$db = connect();
+
+	$req = $db->prepare('DELETE FROM ToDoLists WHERE id = "' . $_POST['delete'] . '"');
+	$rep = $req->execute();	
+}
+
 
 
 
@@ -159,11 +169,12 @@ function addTasksThisList()
 {
 	$db = connect();
 
-	$req = $db->prepare('INSERT INTO Tasks(name, deadline, list_id) VALUES(:name, :deadline, :list_id)');
+	$req = $db->prepare('INSERT INTO Tasks(name, deadline, list_id, status) VALUES(:name, :deadline, :list_id, :status)');
 	$req->execute(array(
 		'name' => $_POST['name'],
 		'deadline' => $_POST['deadline'],
-		'list_id' => $_POST['list']
+		'list_id' => $_POST['list'],
+		'status' => $_POST['status']
 	));
 }
 
@@ -180,7 +191,7 @@ function checkAddTasks()
 	return $countname;
 }
 
-// Function update Status.
+// Function update Status of THIS task.
 
 function updateStatus()
 {
@@ -191,4 +202,14 @@ function updateStatus()
 		'status' => $_POST['status'],
 		'id' => $_POST['id']
 	));
+}
+
+// Function delete task
+
+function deleteTask()
+{
+	$db = connect();
+
+	$req = $db->prepare('DELETE FROM Tasks WHERE id = "' . $_POST['id'] . '"');
+	$rep = $req->execute();
 }
