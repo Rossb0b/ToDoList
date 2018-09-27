@@ -44,7 +44,7 @@
       {
     ?>
         <div class="col-5 mx-auto mt-5" style="border:1px dotted grey">
-          <a class="linkDecoration" href="project.php?project=<?= $listProjects['id']; ?>">
+          <a class="linkDecoration" href="index.php?action=project&amp;project_id=<?= $listProjects['id']; ?>">
             <h2><?= $listProjects['name']; ?></h2>
             <br />
             <p class="redUnderline">Deadline expiration : <?= $listProjects['deadline_fr']; ?></p>

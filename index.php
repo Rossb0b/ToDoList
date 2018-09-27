@@ -1,30 +1,23 @@
 <?php
 
-require ('model.php');
+require('controller.php');
 
-$reqAllProjects = getAllProjects();
-$repAll = $reqAllProjects->fetchAll();
-
-$repLastProjects = getLastProjects();
-
-
-require ('projectsView.php');
-
-if (isset($_POST['name']) AND isset($_POST['description']) AND isset($_POST['deadline']))
-{
-	$repCheckedProject = checkAddProject();
-	if ($repCheckedProject < 1)
-	{
-		$addProject = addProject();
-	}
-	else
-	{
-		echo "<p class='text-center'>Vous avez déjà un projet avec ce nom.</p>";
-	}
+if (isset($_GET['action'])) {
+    if ($_GET['action'] == 'listProjects') {
+        listProjects();
+    }
+    elseif ($_GET['action'] == 'project') {
+        if (isset($_GET['project_id']) && $_GET['project_id'] > 0) {
+            listThisProject();
+        }
+        else {
+            echo 'Erreur : aucun identifiant de billet envoyé';
+        }
+    }
+    elseif ($_GET['action'] == 'tasks' && $_GET['list'] > 0 && $_GET['Project'] > 0){
+    		tasksThisList();
+    	}
 }
-
-
-if (isset($_POST['deleteButton']))
-{
-	$deleteProject = deleteProject();
+else {
+    listProjects();
 }
