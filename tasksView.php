@@ -21,7 +21,7 @@
 						} ?>"><?= $task['name'] . " : " . $task['deadline_fr']; ?>
 						</li>
 							<br />
-							<form method="post" action="tasks.php?list=<?=$_GET['list'];?>">
+							<form method="post" action="index.php?action=tasks&amp;list=<?=$_GET['list'];?>&amp;Project=<?=$_GET['Project'];?>">
 								<input type="hidden" name="id" value="<?= $task['id'] ?>">
 								<select name="status">
 									<option value="0">ToDo</option>
@@ -29,7 +29,7 @@
 								</select>
 								<input type="submit" name="switchStatus" value="Valider">
 							</form>
-							<form method="post" action="tasks.php?list=<?=$_GET['list'];?>">
+							<form method="post" action="index.php?action=tasks&amp;list=<?=$_GET['list'];?>&amp;Project=<?=$_GET['Project'];?>">
 								<input type="hidden" name="id" value="<?= $task['id'] ?>">
 								<button type="submit" name="delete"><i class="fas fa-trash-alt"></i></button>
 							</form>
@@ -41,12 +41,12 @@
 	</div>	
 
 	<div class="container-fluid col-6">
-		<form method="post" action="tasks.php?list=<?=$_GET['list'];?>">
+		<form method="post" action="index.php?action=tasks&amp;list=<?=$_GET['list'];?>&amp;Project=<?=$_GET['Project'];?>">
 			<input type="hidden" name="status" value="0">
 			<label for="name">Indiquez le nom de la tâche.</label>
 			<input type="text" name="name">
 
-			<label for="end">Indiquez la date de fin du projet.</label>
+			<label for="end">Indiquez la date de fin de la tâche.</label>
 			<input type="date" name="deadline" id="end">
 			<br />
 

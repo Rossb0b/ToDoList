@@ -1,5 +1,6 @@
 <?php
   $title = "Listes des projects";
+  $backLinkCheck = false;
   require ('header.php');
 ?>
 

@@ -58,7 +58,7 @@
             </div>
           </li>
           <?php
-            if ($backLinkCheck = true)
+            if ($backLinkCheck == true)
             {
           ?>    
               <li class="nav-item active" style="position:absolute; right:10; top:10;">
