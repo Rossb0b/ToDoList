@@ -3,7 +3,13 @@
 require('controller.php');
 
 if (isset($_GET['action'])) {
-    if ($_GET['action'] == 'listProjects') {
+	if ($_GET['action'] == 'connection'){
+		connection();
+	}
+    elseif ($_GET['action'] == 'registration') {
+        register();
+    }
+    elseif ($_GET['action'] == 'listProjects') {
         listProjects();
     }
     elseif ($_GET['action'] == 'project') {
@@ -19,5 +25,5 @@ if (isset($_GET['action'])) {
     	}
 }
 else {
-    listProjects();
+    connection();
 }

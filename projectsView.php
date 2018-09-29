@@ -1,14 +1,16 @@
 <?php
   $title = "Listes des projects";
   $backLinkCheck = false;
+  $dropDownCheck = true;
   require ('header.php');
+  var_dump($_SESSION);
 ?>
 
 
 
   <div class="container-fluid col-6 mx-auto text-left mt-5">
 
-    <form method="post" action="index.php">
+    <form method="post" action="index.php?action=listProjects">
       <label for="name">Indiquez le nom du projet : </label>
       <input type="text" name="name">
      
@@ -22,7 +24,7 @@
 
     </form>  
 
-    <form method="post" action="index.php">
+    <form method="post" action="index.php?action=listProjects">
       <label for="delete">Indiquez le projet à supprimer.</label>
       <select name="delete">
         <?php

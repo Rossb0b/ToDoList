@@ -1,6 +1,7 @@
 <?php
 	$title = "Liste : " . $repThisList['name'];
 	$backLinkCheck = true;
+	$dropDownCheck = true;
 	$backLink = "index.php?action=project&amp;project_id=" . $_GET['Project'];
 	require ('header.php');
 ?>

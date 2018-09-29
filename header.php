@@ -42,21 +42,28 @@
 <!--               Register Link -->
             </a>
           </li>
-          <li class="nav-item dropdown align-right">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Last Projects
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <?php
-                foreach($repLastProjects as $listProject)
-                {
-              ?>
-                  <a class="dropdown-item" href="project.php?project=<?= $listProject['id']; ?>"><?= $listProject['name']; ?></a>
-              <?php        
-                } 
-              ?>
-            </div>
-          </li>
+          <?php 
+            if ($dropDownCheck == true)
+            {
+          ?>    
+              <li class="nav-item dropdown align-right">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Last Projects
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <?php
+                    foreach($repLastProjects as $listProject)
+                    {
+                  ?>
+                      <a class="dropdown-item" href="project.php?project=<?= $listProject['id']; ?>"><?= $listProject['name']; ?></a>
+                  <?php        
+                    } 
+                  ?>
+                </div>
+              </li>
+          <?php    
+            }
+          ?>  
           <?php
             if ($backLinkCheck == true)
             {

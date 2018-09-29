@@ -1,6 +1,7 @@
 <?php
 	$title = "Projet : " . $repThisProject['name'];
 	$backLinkCheck = true; 
+	$dropDownCheck = true;
 	$backLink = "index.php?action=listProjects";
 	require ('header.php');
 ?>
@@ -35,16 +36,16 @@
 	</div>	
 
 	<div class="container-fluid col-6 mt-5">
-		<form method="post" action="project.php?project=<?=$_GET['project'];?>">
+		<form method="post" action="index.php?action=project&amp;project_id=<?=$_GET['project_id'];?>">
 			<label for="listname">Indiquez le nom de votre liste.</label>
 			<input type="text" name="listname">
 
-			<input type="hidden" name="project" value="<?= $_GET['project']; ?>">
+			<input type="hidden" name="project" value="<?= $_GET['project_id']; ?>">
 
 			<input type="submit" value="valider">
 		</form>
 
-		<form method="post" action="project.php?project=<?=$_GET['project'];?>">
+		<form method="post" action="index.php?action=project&amp;project_id=<?=$_GET['project_id'];?>">
 			<label for="delete">Indiquez la liste à supprimer.</label>
 			<select name="delete">
 				<?php 
