@@ -1,6 +1,11 @@
 <?php
 
 require('controller.php');
+
+if (isset($_COOKIE['id']) AND isset($_COOKIE['pseudo']) AND isset($_COOKIE['password']))
+{
+    cookies();
+}
 if (isset($_GET['action'])) 
 {
 	if ($_GET['action'] == 'connection')
@@ -55,5 +60,6 @@ if (isset($_GET['action']))
 }
 else 
 {
+    session_start();
     connection();
 }
