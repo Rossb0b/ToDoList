@@ -2,6 +2,7 @@
 	$title = "connexion";
 	$backLinkCheck = false;
 	$dropDownCheck = false;
+	$_SESSION['isConnect'] = false;
 	require ('header.php');
 ?>
 

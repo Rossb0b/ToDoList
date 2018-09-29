@@ -7,7 +7,6 @@
   $backLinkCheck = false;
   $dropDownCheck = true;
   require ('header.php');
-  var_dump($_SESSION);
 ?>
 
 

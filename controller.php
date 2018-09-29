@@ -4,9 +4,33 @@ require ('model.php');
 
 // Function that makes projectsView.php functionnal.
 
+
+function cookies()
+{
+	$repIdentification = identification();
+
+	
+	foreach($repIdentification as $val)
+	{
+		$checkedPassword = password_verify($val['pass'], $_COOKIE['password']);
+		
+		if ($_COOKIE['id'] == $val['id'] AND $_COOKIE['pseudo'] == $val['pseudo'] AND $_COOKIE['password'] == $val['pass']) 
+		{
+			session_start();
+			$_SESSION['id'] = $val['id'];
+			$_SESSION['pseudo'] = $val['pseudo'];
+			$_SESSION['isConnect'] = true;
+			listProjects();
+			break;
+		}
+	}
+}
+
+
 function connection()
 {
 	$repIdentification = identification();
+
 	if (!isset($_POST['identifiant']) AND !isset($_POST['password-check']))
 	{
 		require ('connectionView.php');
@@ -26,8 +50,9 @@ function connection()
 					$_SESSION['isConnect'] = true;
 					if (isset($_POST["auto_connection"]))
 					{
-						setcookie('id', '$val["id"]', time() + 365*24*3600, null, null, false, true);
-						setcookie('password', '$val["pass"]', time() + 365*24*3600, null, null, false, true);
+						setcookie('id', ''. $val['id'].'', time() + 365*24*3600, null, null, false, true);
+						setcookie('pseudo', '' . $val['pseudo'] . '', time() + 365*24*3600, null, null, false, true);
+						setcookie('password', '' . $val['pass'] . '', time() + 365*24*3600, null, null, false, true);
 						listProjects();
 						break;
 					}
@@ -68,13 +93,13 @@ function register()
 
 		if ($req < 1 AND preg_match("#^[a-zA-Z0-9._-]{3,10}$#", $_POST['pseudo']) AND preg_match("#[a-zA-Z0-9@._-]{5,}#", $_POST['password']) AND preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email']) AND $_POST['password'] == $_POST['password_verification']) 
 		{
-			echo "Bienvenu " . $_POST['pseudo'] . " votre enregistration a bien été prise en compte.";
+			connection();
+			echo "<p class='text-center'>Bienvenu " . $_POST['pseudo'] . " votre enregistration a bien été prise en compte.</p>";
 
 			$_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
 			$rep = registration();
 
-			connection();
 		}	
 		else 
 		{
