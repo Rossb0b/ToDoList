@@ -11,16 +11,16 @@ function identification()
 {	
 	$db = connect();
 
-	$req = $bdd->query('SELECT id, pseudo, pass FROM member');
-	
-	return $req;
+	$req = $db->query('SELECT * FROM member');
+	$rep = $req->fetchAll();
+	return $rep;
 };
 
 function registration()
 {
 	$db = connect();
 
-	$req = $bdd->prepare('INSERT INTO member(pseudo, pass, email, date_inscription) VALUES(:pseudo, :pass, :email, CURDATE())');
+	$req = $db->prepare('INSERT INTO member(pseudo, pass, email, date_inscription) VALUES(:pseudo, :pass, :email, CURDATE())');
 	$req->execute(array(
 		'pseudo' => $_POST['pseudo'],
 		'pass' => $_POST['password'],
@@ -34,7 +34,7 @@ function checkRegistration()
 {
 	$db = connect();
 
-	$req = $bdd->query('SELECT pseudo FROM member WHERE pseudo = "'.$_POST['pseudo'].'"');
+	$req = $db->query('SELECT pseudo FROM member WHERE pseudo = "'.$_POST['pseudo'].'"');
 	$countpseudo = $req->rowCount();
 
 	return $countpseudo;
@@ -61,7 +61,7 @@ function getAllProjects()
 {	
 	$db = connect();
 
-	$req = $db->query('SELECT id, name, DATE_FORMAT(deadline, "%d/%m/%Y %Hh%imin%ss") as deadline_fr FROM Projects');
+	$req = $db->query('SELECT id, name, DATE_FORMAT(deadline, "%d/%m/%Y %Hh%imin%ss") as deadline_fr FROM Projects WHERE member_id = "' . $_SESSION['id'] . '"');
 	
 	return $req;
 };
@@ -73,7 +73,7 @@ function getLastProjects()
 {
 	$db = connect();
 
-	$req = $db->query('SELECT id, name FROM Projects ORDER BY id DESC LIMIT 5');
+	$req = $db->prepare('SELECT id, name FROM Projects ORDER BY id DESC LIMIT 5 WHERE member_id = "' . $_SESSION['id'] . '"');
 	$rep = $req->fetchAll();
 	return $rep;
 }
@@ -85,11 +85,12 @@ function addProject()
 {
 	$db = connect();
 
-	$req = $db->prepare('INSERT INTO Projects(name, description, deadline) VALUES(:name, :description, :deadline)');
+	$req = $db->prepare('INSERT INTO Projects(name, description, deadline, member_id) VALUES(:name, :description, :deadline, :member_id)');
 	$req->execute(array(
 		'name' => $_POST['name'],
 		'description' => $_POST['description'],
-		'deadline' => $_POST['deadline']
+		'deadline' => $_POST['deadline'],
+		'member_id' => $_SESSION['id'],
 	));
 }
 
@@ -98,7 +99,7 @@ function checkAddProject()
 {
 	$db = connect();
 
-	$req = $db->query('SELECT name FROM Projects WHERE name = "' . $_POST['name'] . '"');
+	$req = $db->prepare('SELECT name FROM Projects WHERE name = "' . $_POST['name'] . '" AND member_id = "' . $_SESSION['id'] . '"');
 	$countname = $req->rowCount();
 
 	return $countname;

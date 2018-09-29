@@ -30,35 +30,50 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.php?action=connection">Home <span class="sr-only">(current)</span></a>
           </li>
+          
+          <!-- Only appears on views with $_SESSION['isConnect'] == true -->
+          <?php
+            if ($_SESSION['isConnect'] == true)
+            {
+          ?>    
+          <!-- Disconnect Link -->
           <li class="nav-item">
-            <a class="nav-link" href="#">
-<!--               Connection Link ! -->
+            <a class="nav-link" href="index.php?action=disconnect">
+              Se déconnecter
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index.php">
-<!--               Register Link -->
-            </a>
-          </li>
-          <li class="nav-item dropdown align-right">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Last Projects
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <?php
-                foreach($repLastProjects as $listProject)
-                {
-              ?>
-                  <a class="dropdown-item" href="project.php?project=<?= $listProject['id']; ?>"><?= $listProject['name']; ?></a>
-              <?php        
-                } 
-              ?>
-            </div>
           </li>
           <?php
-            if ($backLinkCheck = true)
+            }
+          ?>
+
+          <!-- Only appears on views with $dropDownCheck == true -->
+          <?php 
+            if ($dropDownCheck == true)
+            {
+          ?>    
+          <!-- Dropdown link with 5 last projects of user -->
+              <li class="nav-item dropdown align-right">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Last Projects
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <?php
+                    foreach($repLastProjects as $listProject)
+                    {
+                  ?>
+                      <a class="dropdown-item" href="project.php?project=<?= $listProject['id']; ?>"><?= $listProject['name']; ?></a>
+                  <?php        
+                    } 
+                  ?>
+                </div>
+              </li>
+          <?php    
+            }
+          ?>  
+          <?php
+            if ($backLinkCheck == true)
             {
           ?>    
               <li class="nav-item active" style="position:absolute; right:10; top:10;">
