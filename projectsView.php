@@ -1,4 +1,8 @@
 <?php
+  if (!isset($_SESSION))
+  {
+    session_start();
+  }
   $title = "Listes des projects";
   $backLinkCheck = false;
   $dropDownCheck = true;

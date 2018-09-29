@@ -20,6 +20,7 @@ function connection()
 			{
 				if ($checkedPassword)
 				{
+
 					$_SESSION['id'] = $val['id'];
 					$_SESSION['pseudo'] = $val['pseudo'];
 					$_SESSION['isConnect'] = true;
@@ -106,7 +107,6 @@ function register()
 
 function listProjects()
 {
-	session_start();
 	$reqAllProjects = getAllProjects();
 	$repAll = $reqAllProjects->fetchAll();
 
