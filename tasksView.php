@@ -1,5 +1,6 @@
 <?php
 	$title = "Liste : " . $repThisList['name'];
+	// We declare there will be a dropdown and a return link on this page.
 	$backLinkCheck = true;
 	$dropDownCheck = true;
 	$backLink = "index.php?action=project&amp;project_id=" . $_GET['Project'];

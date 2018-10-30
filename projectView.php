@@ -1,6 +1,7 @@
 <?php
 
 	$title = "Projet : " . $repThisProject['name'];
+	// We declare there will be a dropdown and a return link on this page.
 	$backLinkCheck = true; 
 	$dropDownCheck = true;
 	$backLink = "index.php?action=listProjects";
@@ -12,11 +13,11 @@
 			<?= $repThisProject['name']; ?>
 		</h1>
 		<p>
-			<h2> Description : </h2>
+			<h2> Description:</h2>
 			<?= $repThisProject['description']; ?>
 		</p>
 		<p>
-			<h2> Deadline : </h2>	
+			<h2> Deadline:</h2>	
 			<?= $repThisProject['deadline_fr']; ;?>
 		</p>		
 	</div>	
@@ -28,8 +29,24 @@
 			foreach($repListsThisProject as $list)
 			{
 		?>
-				<a href="index.php?action=tasks&amp;list=<?=$list['id'];?>&amp;Project=<?= $_GET['project_id'];?>"><?= $list['name']; ?></a>
 				<br />
+				<ul>
+				<?php $tasks_name = explode(',', $list['tasks_name']);
+							foreach($tasks_name as $task_name)
+							{
+								
+								
+								?>
+										<li>
+										<?= $task_name;?>
+										<a href="index.php?action=tasks&amp;list=<?=$list['id'];?>&amp;Project=<?= $_GET['project_id'];?>"><?= $list['name']; ?></a>
+										</li>	
+									<?php
+								
+							}
+						?>	
+				</ul>
+
 		<?php		
 			}
 		?>
@@ -38,8 +55,8 @@
 
 	<div class="container-fluid col-6 mt-5">
 		<form method="post" action="index.php?action=project&amp;project_id=<?=$_GET['project_id'];?>">
-			<label for="listname">Indiquez le nom de votre liste.</label>
-			<input type="text" name="listname">
+			<label for="listname">Indiquez le nom de votre liste :</label>
+			<input class="form-control" type="text" name="listname">
 
 			<input type="hidden" name="project" value="<?= $_GET['project_id']; ?>">
 

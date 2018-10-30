@@ -1,6 +1,7 @@
 <?php
   session_start();
 	$title = "S'enregister";
+  // We declare there will be no dropdown but a return link on this page.
 	$backLinkCheck = true;
 	$dropDownCheck = false;
 	$backLink = "index.php?action=connection";

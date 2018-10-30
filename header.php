@@ -1,3 +1,21 @@
+<?php
+  try 
+  {
+    $db = new PDO('mysql:host=localhost;dbname=ToDoList', 'root', '58375837Zz', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+  }
+  catch (exception $e)
+  {
+      die('erreur : ' . $e->getMessage());
+  }
+
+if (isset($_SESSION['id']))
+{
+  $req = $db->prepare('SELECT * FROM Projects WHERE member_id = "' . $_SESSION['id'] . '" LIMIT 5');
+  $req->execute();
+  $repLastProjects = $req->fetchAll();
+}
+?>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -63,7 +81,7 @@
                     foreach($repLastProjects as $listProject)
                     {
                   ?>
-                      <a class="dropdown-item" href="project.php?project=<?= $listProject['id']; ?>"><?= $listProject['name']; ?></a>
+                      <a class="dropdown-item" href="index.php?action=project&amp;project_id=<?= $listProject['id']; ?>"><?= $listProject['name']; ?></a>
                   <?php        
                     } 
                   ?>
@@ -72,6 +90,8 @@
           <?php    
             }
           ?>  
+
+          <!-- Only appears on views with $backLinkCheck == true -->
           <?php
             if ($backLinkCheck == true)
             {

@@ -1,5 +1,6 @@
 <?php
 	$title = "connexion";
+	// We declare there will be no dropdown or return link on this page.
 	$backLinkCheck = false;
 	$dropDownCheck = false;
 	$_SESSION['isConnect'] = false;
