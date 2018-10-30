@@ -2,8 +2,8 @@
 
 require ('model.php');
 
-// Function that makes projectsView.php functionnal.
 
+// Function connect if cookies are set.
 
 function cookies()
 {
@@ -26,6 +26,10 @@ function cookies()
 	}
 }
 
+
+
+
+// Function for get connect and create cookies.
 
 function connection()
 {
@@ -64,14 +68,20 @@ function connection()
 				}
 				else 
 				{
-					require ('connectionView.php');
-					echo "Mauvais identifiant ou mot de passe2.";
+					require ('connectionViex.php');
+					echo "Mauvais identifiant ou mot de passe.";
 					break;
 				}
 			}
 		}
 	}
 }
+
+
+
+
+
+// Function for registration.
 
 function register()
 {
@@ -130,6 +140,11 @@ function register()
 }
 
 
+
+
+
+// Function that makes projectsView.php functionnal.
+
 function listProjects()
 {
 	$reqAllProjects = getAllProjects();
@@ -159,6 +174,12 @@ function listProjects()
 		$deleteProject = deleteProject();
 	}	
 }
+
+function listLastProjects()
+{
+	$listLastProjects = getLastProjects();
+}
+
 
 
 // Function that makes projectView.php functionnal.
@@ -191,6 +212,9 @@ function listThisProject()
 		$deleteList = deleteList();
 	}
 }
+
+
+
 
 
 // Function that makes tasksView.php functionnal.

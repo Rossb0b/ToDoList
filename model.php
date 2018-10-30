@@ -2,7 +2,7 @@
 
 require ('global.php');
 
-// !----------------------------------------------------------! 						
+// !----------------------------------------------------------! 		
 // 				Function needed for memberArea
 // !----------------------------------------------------------!
 
@@ -73,9 +73,12 @@ function getLastProjects()
 {
 	$db = connect();
 
-	$req = $db->prepare('SELECT id, name FROM Projects ORDER BY id DESC LIMIT 5 WHERE member_id = "' . $_SESSION['id'] . '"');
-	$rep = $req->fetchAll();
-	return $rep;
+	if (isset($_SESSION['id']))
+	{
+		$req = $db->prepare('SELECT * FROM Projects WHERE member_id = "' . $_SESSION['id'] . '" LIMIT 5');
+		$req->execute();
+		$repLastProjects = $req->fetchAll();
+	}
 }
 
 
@@ -148,12 +151,23 @@ function getListsThisProject()
 {
 	$db = connect();
 
-	$req = $db->prepare('SELECT id, name FROM ToDoLists WHERE project_id = ?');
+	$req = $db->prepare('SELECT ToDoLists.id, ToDoLists.name, GROUP_CONCAT(Tasks.name) as tasks_name FROM ToDoLists LEFT JOIN Tasks ON ToDoLists.id = Tasks.list_id WHERE project_id = ? GROUP BY ToDoLists.id');
 	$req->execute(array($_GET['project_id']
 	));
 	$rep = $req->fetchAll();
 	return $rep;
 }
+
+// function getListThisProjectPlusTasksThisList()
+// {
+// 	$db = connect();
+
+// 	$req = $db->query('SELECT ToDoLists.id, GROUP_CONCAT(Tasks.name ORDER BY deadline) AS name FROM ToDoLists LEFT JOIN Tasks ON ToDoLists.id = Tasks.list_id GROUP BY ToDoLists.id');
+// 	$rep = $req->fetchAll();
+// 	return $rep;
+// }
+
+
 
 function addListsThisProject()
 {

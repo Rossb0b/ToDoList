@@ -4,6 +4,7 @@
     session_start();
   }
   $title = "Listes des projects";
+  // We declare there will be a dropdown but no return link on this page.
   $backLinkCheck = false;
   $dropDownCheck = true;
   require ('header.php');
@@ -12,17 +13,24 @@
 
 
   <div class="container-fluid col-6 mx-auto text-left mt-5">
+      <h1>Gestion des projets</h1>
 
     <form method="post" action="index.php?action=listProjects">
+    <div class="form-group">
       <label for="name">Indiquez le nom du projet : </label>
-      <input type="text" name="name">
-     
-      <label for="description">Indiquez la description du projet :</label>
-      <input type="text" name="description">
+      <input class="form-control" type="text" name="name">
+    </div>
 
+    <div class="form-group">
+      <label for="description">Indiquez la description du projet :</label>
+      <input class="form-control" type="text" name="description">
+    </div> 
+
+    <div class="form-group">
       <label for="end">Indiquez la date de fin du projet.</label>
-      <input type="date" name="deadline" id="end">
-<br />
+      <input class="form-control" type="date" name="deadline" id="end">
+    </div>
+    
       <input type="submit" value="valider">
 
     </form>  
