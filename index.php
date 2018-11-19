@@ -25,7 +25,6 @@ elseif (isset($_GET['action']))
         else
         {
 		    connection();
-            listLastProjects();
         }
 	}
     elseif ($_GET['action'] == 'registration') 

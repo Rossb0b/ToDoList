@@ -7,20 +7,20 @@
 	require ('header.php');
 ?>
 
-	<div class="main-title container-fluid mt-5 col-2 text-center mx-auto">
-		<h1>
+	<div class="main-title container-fluid mt-5 col-10 text-center mx-auto">
+		<h1 style="word-wrap:break-word;">
 			<?= $repThisList['name']; ?>
 		</h1>	
 	</div>
 
-	<div class="container-fluid">
+	<div class="container-fluid" style="word-wrap:break-word;">
 		<ul>
 			<?php foreach ($repTasksThisList as $task)
 				{
 			?>		<div>
 						<li class="<?php if($task['status'] == '1'){
 							echo 'done';
-						} ?>"><?= $task['name'] . " : " . $task['deadline_fr']; ?>
+						} ?>"><?= $task['name'] . " : <br>" . $task['deadline_fr']; ?>
 						</li>
 							<br />
 							<form method="post" action="index.php?action=tasks&amp;list=<?=$_GET['list'];?>&amp;Project=<?=$_GET['Project'];?>">

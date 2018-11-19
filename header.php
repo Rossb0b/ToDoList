@@ -57,7 +57,7 @@ if (isset($_SESSION['id']))
             {
           ?>    
           <!-- Disconnect Link -->
-          <li class="nav-item">
+          <li class="nav-item" style="position:absolute; top:6px; right:5px;">
             <a class="nav-link" href="index.php?action=disconnect">
               Se déconnecter
             </a>
@@ -96,7 +96,7 @@ if (isset($_SESSION['id']))
             if ($backLinkCheck == true)
             {
           ?>    
-              <li class="nav-item active" style="position:absolute; right:10; top:10;">
+              <li class="nav-item active">
                 <a class="nav-link" href="<?= $backLink; ?>">Retour<span class="sr-only">(current)</span></a>
               </li>
           <?php  
